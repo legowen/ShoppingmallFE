@@ -27,7 +27,7 @@ const Navbar = () => {
                  <li>{menu}</li>
                 ))}  
             </ul>
-            <div>
+            <div className='search-box'>
                 <FontAwesomeIcon icon={faSearch}/>
                 <input type ='text'/>
             </div>

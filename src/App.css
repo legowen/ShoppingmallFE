@@ -22,3 +22,10 @@
   display: flex;
   justify-content: center;
 }
+
+.search-box{
+  border-bottom: 1px solid black;
+  position: absolute;
+  right: 20px;
+  padding: 5px;
+}
