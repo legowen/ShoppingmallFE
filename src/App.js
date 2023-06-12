@@ -1,8 +1,8 @@
-import logo from './logo.svg';
+import {useState} from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
   Routes
 } from "react-router-dom";
@@ -13,6 +13,7 @@ import Navbar from './components/Navbar';
 
 function App() {
  
+  const {authenticate,setAuthenticate} = useState (false); //If it is true signin, if it is false, stay signout. 
 
   return ( 
     <div> 
