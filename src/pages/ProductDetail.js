@@ -11,7 +11,7 @@ const ProductDetail = () => {
 
     const getProductDetail = async () => {
         setLoading(true);
-        let url = `https://my-json-server.typicode.com/legowen/hnm-react-router/products?q=${id}`
+        let url = `https://my-json-server.typicode.com/legowen/hnm-react-router/products/${id}`
         let response = await fetch(url);
         let data = await response.json();
         setLoading(false);
