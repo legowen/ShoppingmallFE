@@ -11,7 +11,7 @@ const ProductDetail = () => {
 
     const getProductDetail = async () => {
         setLoading(true);
-        let url = `http://localhost:5000/products/${id}`
+        let url = `https://my-json-server.typicode.com/OwenSyKim/hnm-react-router/products?q=${id}`
         let response = await fetch(url);
         let data = await response.json();
         setLoading(false);
