@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
@@ -6,22 +6,32 @@ import {
   Route,
   Routes
 } from "react-router-dom";
+import Navbar from './components/Navbar';
 import ProductAll from './pages/ProductAll';
 import Login from './pages/Login';
-import ProductDetail from './pages/ProductDetail';
-import Navbar from './components/Navbar';
+import PrivateRoute from './routes/PrivateRoute';
 
 function App() {
  
-  const {authenticate,setAuthenticate} = useState (false); //If it is true signin, if it is false, stay signout. 
+  let [authenticate, setAuthenticate] = useState (false); //If it is true signin, if it is false, stay signout. 
+  useEffect( () => {
+    console.log("AAA", authenticate);
+  },[authenticate]);
 
   return ( 
     <div> 
-      <Navbar/>
+      <Navbar authenticate={authenticate} setAuthenticate={setAuthenticate} />
         <Routes>
             <Route path="/" element={<ProductAll/>}/>
-            <Route path="/login" element={<Login/>}/>
-            <Route path="/product/:id" element={<ProductDetail/>}/> 
+
+            <Route 
+             path="/login"
+             element={<Login setAuthenticate={setAuthenticate}/>}
+            />
+
+            <Route 
+              path="/product/:id" 
+              element={<PrivateRoute authenticate={authenticate}/>}/> 
         </Routes>   
     </div>
     // /product/:id => Restful Route's Rule 

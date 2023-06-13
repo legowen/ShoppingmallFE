@@ -2,9 +2,9 @@
   "products": [
     {
       "id": 0,
-      "img": "https://lp2.hm.com/hmgoepprod?set=source[/ec/ef/ecef9d77c56c519e24a76b83331ae2c18f73f50d.jpg],origin[dam],category[],type[LOOKBOOK],res[y],hmver[1]&call=url[file:/product/main]",
-      "title": "벨티드 트윌 코트",
-      "price": 99900,
+      "img": "https://lp2.hm.com/hmgoepprod?set=source[/14/16/1416ea2d6b23a6fcdc046e9245ef6c6f27d5ea19.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[z],hmver[2]&call=url[file:/product/main]",
+      "title": "Linen-blend Pull-on Shorts",
+      "price": 22.99,
       "choice": true,
       "new": true,
       "size": [
@@ -15,9 +15,9 @@
     },
     {
       "id": 1,
-      "img": "https://lp2.hm.com/hmgoepprod?set=source[/af/50/af50afa939c28ba24fd263fb573b4ad5f0858b14.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[y],hmver[2]&call=url[file:/product/main]",
-      "title": "슬림핏 맘 하이웨이스트 앵클 진",
-      "price": 29900,
+      "img": "https://lp2.hm.com/hmgoepprod?set=source[/6d/d7/6dd793d4bad7b5bba60651a33bb8ce243c949a47.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[z],hmver[2]&call=url[file:/product/main]",
+      "title": "High Waist Denim Shorts",
+      "price": 34.99,
       "choice": true,
       "new": true,
       "size": [
@@ -41,9 +41,9 @@
     },
     {
       "id": 3,
-      "img": "https://lp2.hm.com/hmgoepprod?set=source[/10/34/10341727ce95aae07695e7b13392a1d802ffe1f3.jpg],origin[dam],category[],type[LOOKBOOK],res[y],hmver[1]&call=url[file:/product/main]",
-      "title": "퍼프 슬리브 드레스",
-      "price": 39900,
+      "img": "https://lp2.hm.com/hmgoepprod?set=source[/f8/21/f8210943a1a1c3bf3af5b1d3395f00c1974f4cf4.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[z],hmver[2]&call=url[file:/product/main]",
+      "title": "Twist-detail Peplum Top",
+      "price": 24.99,
       "choice": false,
       "new": true,
       "size": [

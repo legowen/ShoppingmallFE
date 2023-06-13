@@ -1,15 +1,22 @@
-import React from 'react'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const ProductCard = ({item}) => {
+const ProductCard = ({ item }) => {
+    const navigate = useNavigate();
+
+    const showProduct = (id) => {
+        navigate(`/product/${id}`);
+    }
+
   return (
-    <div>
-        <img src={item?.img}/>
-        <div>{item?.choice == true? "Concious Choice" : ""}</div>
+    <div className='card' onClick={() => showProduct( item.id)}>
+        <img src={item?.img} />
+        <div className="choice">{item?.choice == true? "Concious Choice" : ""}</div>
         <div>{item?.title}</div>
         <div>${item?.price}</div>
-        <div>{item?.new == true? "New" : ""}</div>
+        <div className="new-product">{item?.new ? "New" : ""}</div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductCard
+export default ProductCard;
