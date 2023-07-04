@@ -71,7 +71,7 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
           />
         </Link>
       </div>
-      <div class="nav-menu-area">
+      <div className="nav-menu-area">
         <ul className="menu">
           {menuList.map((menu, index) => (
             <li>
