@@ -1,0 +1,167 @@
+{
+  "products":[
+      {
+          "id": 0,
+          "img": "https://lp2.hm.com/hmgoepprod?set=source[/14/16/1416ea2d6b23a6fcdc046e9245ef6c6f27d5ea19.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[z],hmver[2]&call=url[file:/product/main]",
+          "title": "Linen-blend Pull-on Shorts",
+          "price": 22.99,
+          "choice": false,
+          "new": true,
+          "size": [
+            "S",
+            "M",
+            "L"
+          ]
+      },
+      {
+          "id":1,
+          "img":"https://lp2.hm.com/hmgoepprod?set=source[/af/50/af50afa939c28ba24fd263fb573b4ad5f0858b14.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[y],hmver[2]&call=url[file:/product/main]",
+          "title":"Slim-fit Highwest Anckle Jean",
+          "price": 29.99,
+          "choice":true,
+          "new":true,
+          "size":["S","M","L"]
+
+      },
+      {
+          "id":2,
+          "img":"https://lp2.hm.com/hmgoepprod?set=source[/6c/e4/6ce40d039cd351ca3823bf88d6193df77aa5d181.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[z],hmver[3]&call=url[file:/product/main]",
+          "title":"Relaxed Fit Printed T-shirt",
+          "price":16.99,
+          "choice":false,
+          "new":true,
+          "size":["S","M","L"]
+
+      },
+      {
+          "id":3,
+          "img":"https://lp2.hm.com/hmgoepprod?set=source[/be/e8/bee8434ce5454d291c3841193abeda5891c5b62c.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[z],hmver[2]&call=url[file:/product/main]",
+          "title":"Relaxed Fit Embroidered Resort Shirt",
+          "price":46.99,
+          "choice":false,
+          "new":true,
+          "size":["S","M","L"]
+
+      },
+      {
+          "id":4,
+          "img":"https://lp2.hm.com/hmgoepprod?set=source[/c3/40/c3402400d26fa70e43827caaf0da0128bc23c00b.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[z],hmver[2]&call=url[file:/product/main]",
+          "title":"Slim Fit Easy-iron Shirt",
+          "price":24.99,
+          "choice":true,
+          "new":false,
+          "size":["S","M","L"]
+
+      },
+      {
+          "id":5,
+          "img":"https://lp2.hm.com/hmgoepprod?set=source[/40/0a/400aa4093604cb8258bd470da15614b97bc96381.jpg],origin[dam],category[men_shorts_joggers],type[DESCRIPTIVESTILLLIFE],res[z],hmver[2]&call=url[file:/product/main]",
+          "title":"Regular Fit Sweatshorts",
+          "price":14.99,
+          "choice":false,
+          "new":false,
+          "size":["S","M","L"]
+
+      },
+      {
+          "id":6,
+          "img":"https://lp2.hm.com/hmgoepprod?set=source[/40/35/4035192e81131c7b6b3780c16109521950b78a68.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[z],hmver[2]&call=url[file:/product/main]",
+          "title":"Slim Fit Linen Shirt",
+          "price":49.99,
+          "choice":true,
+          "new":false,
+          "size":["S","M","L"]
+
+      },
+      {
+          "id":7,
+          "img":"https://lp2.hm.com/hmgoepprod?set=source[/74/51/7451cc8227cbd9770c4c4133cf95b1e6f45aab6e.jpg],origin[dam],category[men_hoodiessweatshirts_sweatshirts],type[DESCRIPTIVESTILLLIFE],res[z],hmver[2]&call=url[file:/product/main]",
+          "title":"Relaxed Fit Appliquéd Sweatshirt",
+          "price":29.99,
+          "choice":false,
+          "new":true,
+          "size":["S","M","L"]
+
+      },
+      {
+          "id":8,
+          "img":"https://lp2.hm.com/hmgoepprod?set=source[/81/55/815548305074386b21821d4b70275f98abd3a495.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[z],hmver[2]&call=url[file:/product/main]",
+          "title":"Oversized Fit Hooded Cotton Jacket",
+          "price":49.99,
+          "choice":true,
+          "new":true,
+          "size":["S","M","L"]
+
+      },
+      {
+          "id":9,
+          "img":"https://lp2.hm.com/hmgoepprod?set=source[/99/96/9996b4f6df09c103861b0db6161556cedf3f8447.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[z],hmver[2]&call=url[file:/product/main]",
+          "title":"Skinny Fit Nylon Cargo Joggers",
+          "price":54.99,
+          "choice":false,
+          "new":true,
+          "size":["S","M","L"]
+
+      },
+      {
+          "id":10,
+          "img":"https://lp2.hm.com/hmgoepprod?set=source[/50/93/509305b3fea6ed09e5950efaa1e22086c5e8b41e.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[z],hmver[2]&call=url[file:/product/main]",
+          "title":"Relaxed Fit Denim Jacket",
+          "price":54.99,
+          "choice":true,
+          "new":false,
+          "size":["S","M","L"]
+
+      },
+      {
+          "id":11,
+          "img":"https://lp2.hm.com/hmgoepprod?set=source[/ce/c4/cec40d8350d02ef358060c508022f336008d5965.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[z],hmver[2]&call=url[file:/product/main]",
+          "title":"Bomber Jacket",
+          "price":49.99,
+          "choice":true,
+          "new":true,
+          "size":["S","M","L"]
+
+      },
+      {
+          "id":12,
+          "img":"https://lp2.hm.com/hmgoepprod?set=source[/58/bd/58bdb39024a4d5bb42410b61c1d09beda3ceb51d.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[z],hmver[2]&call=url[file:/product/main]",
+          "title":"Skinny Fit Suit Pants",
+          "price":54.99,
+          "choice":true,
+          "new":true,
+          "size":["S","M","L"]
+
+      },
+      {
+          "id":13,
+          "img":"https://lp2.hm.com/hmgoepprod?set=source[/d6/cb/d6cba2505fcceeed7df234d770f0467fa5dddce3.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[z],hmver[2]&call=url[file:/product/main]",
+          "title":"Regular Fit Cotton Rugby Shirt",
+          "price":31.99,
+          "choice":false,
+          "new":false,
+          "size":["S","M","L"]
+
+      },
+      {
+          "id":14,
+          "img":"https://lp2.hm.com/hmgoepprod?set=source[/e8/0a/e80a7443a1c2760e969c98cd19ee96b2d7b070c9.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[z],hmver[2]&call=url[file:/product/main]",
+          "title":"The Simpsons x H&M",
+          "price":59.99,
+          "choice":false,
+          "new":false,
+          "size":["S","M","L"]
+
+      },
+      {
+          "id":15,
+          "img":"https://lp2.hm.com/hmgoepprod?set=source[/5a/97/5a9787e31a37242c09b67d2f224bbd8b1c999c35.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[z],hmver[2]&call=url[file:/product/main]",
+          "title":"Slim Jeans",
+          "price":34.99,
+          "choice":false,
+          "new":false,
+          "size":["S","M","L"]
+
+      }
+  ]
+}
