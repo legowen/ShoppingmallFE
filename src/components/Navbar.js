@@ -1,38 +1,35 @@
-import React, {useState} from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-regular-svg-icons';
-import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
+import { faSearch, faBars } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
-
-
+import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ authenticate, setAuthenticate }) => {
+  const menuList = [
+    "Women",
+    "Men",
+    "Divided",
+    "Baby",
+    "Kids",
+    "Beauty",
+    "Sport",
+    "Sale",
+    "Sustainability",
+  ];
 
-    const menuList = [
-        "Women",
-        "Men", 
-        "Divided", 
-        "Baby", 
-        "Kids", 
-        "Beauty", 
-        "Sport", 
-        "Sale", 
-        "Sustainability"
-    ];
+  let [width, setWidth] = useState(0);
 
-    let [width, setWidth] = useState(0);
+  let navigate = useNavigate();
 
-    let navigate = useNavigate ();
-
-    //search function
-    const onCheckEnter = (event) => {
-        if (event.key === "Enter") {
-        // Read input words
-          navigate(`?q=${event.target.value}`);
-          // change to url
-        }
-      };
+  //search function
+  const onCheckEnter = (event) => {
+    if (event.key === "Enter") {
+      // Read input words
+      navigate(`?q=${event.target.value}`);
+      // change to url
+    }
+  };
 
   return (
     <div>
@@ -64,12 +61,7 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
       </div>
 
       <div className="nav-logo">
-        <Link to="/">
-          {<img
-            width={100}
-            src="/logo.png"
-          />}
-        </Link>
+        <Link to="/">{<img width={100} src="/logo.png" />}</Link>
       </div>
       <div className="nav-menu-area">
         <ul className="menu">
@@ -91,4 +83,4 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
   );
 };
 
-export default Navbar
+export default Navbar;
