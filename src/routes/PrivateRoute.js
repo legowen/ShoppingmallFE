@@ -1,16 +1,14 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
-import ProductDetail from "../pages/ProductDetail";
-import { useLocation } from "react-router";
+import { useSelector } from "react-redux";
+import { Navigate, Outlet } from "react-router-dom";
 
-const PrivateRoute = ({ authenticate }) => {
-  const location = useLocation();
-  console.log("lll", location);
-  return authenticate ? (
-    <ProductDetail />
-  ) : (
-    <Navigate to="/login" replace state={{ to: location }} />
-  );
+const PrivateRoute = ({ permissionLevel }) => {
+  //const user = useSelector((state) => state.user.user);
+  const user = { level: "admin" };
+  const isAuthenticated =
+    user?.level === permissionLevel || user?.level === "admin";
+
+  return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default PrivateRoute;
