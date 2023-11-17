@@ -28,40 +28,40 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
   const dispatch = useDispatch();
   const [stockError, setStockError] = useState(false);
   const handleClose = () => {
-    //모든걸 초기화시키고;
-    // 다이얼로그 닫아주기
+    // Init all / 모든걸 초기화시키고;
+    // Close Dialog / 다이얼로그 닫아주기
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    //재고를 입력했는지 확인, 아니면 에러
-    // 재고를 배열에서 객체로 바꿔주기
-    // [['M',2]] 에서 {M:2}로
+    // Check user input item, if not Error  //  재고를 입력했는지 확인, 아니면 에러
+    // Convert array type to object  //  재고를 배열에서 객체로 바꿔주기
+    // [['M',2]] -> {M:2}
     if (mode === "new") {
-      //새 상품 만들기
+      // Add new Product  //  새 상품 만들기
     } else {
-      // 상품 수정하기
+      // Edit Product  //  상품 수정하기
     }
   };
 
   const handleChange = (event) => {
-    //form에 데이터 넣어주기
+    //Input data to form  //  form에 데이터 넣어주기
   };
 
   const addStock = () => {
-    //재고타입 추가시 배열에 새 배열 추가
+    //Add new Array when add new product in stock  //  재고타입 추가시 배열에 새 배열 추가
   };
 
   const deleteStock = (idx) => {
-    //재고 삭제하기
+    //Delete Item in stock  //  재고 삭제하기
   };
 
   const handleSizeChange = (value, index) => {
-    //  재고 사이즈 변환하기
+    //  Change Item size  //  재고 사이즈 변환하기
   };
 
   const handleStockChange = (value, index) => {
-    //재고 수량 변환하기
+    // Change Item stock  //  재고 수량 변환하기
   };
 
   const onHandleCategory = (event) => {
@@ -82,20 +82,20 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
   };
 
   const uploadImage = (url) => {
-    //이미지 업로드
+    //Image upload
   };
 
   useEffect(() => {
     if (showDialog) {
       if (mode === "edit") {
-        // 선택된 데이터값 불러오기 (재고 형태 객체에서 어레이로 바꾸기)
+        // Bring selected data value (Convert stock type : Object to Array ) //  선택된 데이터값 불러오기 (재고 형태 객체에서 어레이로 바꾸기)
       } else {
-        // 초기화된 값 불러오기
+        // Bring init value  //  초기화된 값 불러오기
       }
     }
   }, [showDialog]);
 
-  //에러나면 토스트 메세지 보여주기
+  //Send Error msg  //  에러나면 토스트 메세지 보여주기
 
   return (
     <Modal show={showDialog} onHide={handleClose}>
@@ -148,7 +148,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
         <Form.Group className="mb-3" controlId="stock">
           <Form.Label className="mr-1">Stock</Form.Label>
           {stockError && (
-            <span className="error-message">재고를 추가해주세요</span>
+            <span className="error-message">Add Item in stock</span>
           )}
           <Button size="sm" onClick={addStock}>
             Add +

@@ -10,11 +10,11 @@ const CartProductCard = ({ item }) => {
   const dispatch = useDispatch();
 
   const handleQtyChange = () => {
-    //아이템 수량을 수정한다
+    //Edit Item quantity
   };
 
   const deleteCart = (id) => {
-    //아이템을 지운다
+    //Delete Cart Item
   };
 
   return (
@@ -28,7 +28,7 @@ const CartProductCard = ({ item }) => {
         </Col>
         <Col md={10} xs={12}>
           <div className="display-flex space-between">
-            <h3>리넨셔츠</h3>
+            <h3>Linen-blend Pull-on Shirts</h3>
             <button className="trash-button">
               <FontAwesomeIcon
                 icon={faTrash}
@@ -39,10 +39,10 @@ const CartProductCard = ({ item }) => {
           </div>
 
           <div>
-            <strong>₩ 45,000</strong>
+            <strong>$45</strong>
           </div>
           <div>Size: Menu</div>
-          <div>Total: ₩ 45,000</div>
+          <div>Total: $45</div>
           <div>
             Quantity:
             <Form.Select

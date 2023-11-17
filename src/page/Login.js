@@ -16,11 +16,12 @@ const Login = () => {
 
   const loginWithEmail = (event) => {
     event.preventDefault();
+    //Send email, password Data to Backend
     //이메일,패스워드를 가지고 백엔드로 보내기
   };
 
   const handleGoogleLogin = async (googleData) => {
-    // 구글로 로그인 하기
+    //Login with Google Account
   };
 
   if (user) {
@@ -59,12 +60,12 @@ const Login = () => {
               Login
             </Button>
             <div>
-              아직 계정이 없으세요?<Link to="/register">회원가입 하기</Link>{" "}
+              Need to join us?<Link to="/register">Register In</Link>{" "}
             </div>
           </div>
 
           <div className="text-align-center mt-2">
-            <p>-외부 계정으로 로그인하기-</p>
+            <p>-Connect with Other Accounts-</p>
             <div className="display-center"></div>
           </div>
         </Form>

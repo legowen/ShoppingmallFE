@@ -18,14 +18,15 @@ const Navbar = ({ user }) => {
   const isMobile = window.navigator.userAgent.indexOf("Mobile") !== -1;
   const [showSearchBox, setShowSearchBox] = useState(false);
   const menuList = [
-    "여성",
+    "Women",
+    "Men",
     "Divided",
-    "남성",
-    "신생아/유아",
-    "아동",
-    "H&M HOME",
+    "Baby",
+    "Kids",
+    "Beauty",
+    "Sport",
     "Sale",
-    "지속가능성",
+    "Sustainability",
   ];
   let [width, setWidth] = useState(0);
   let navigate = useNavigate();
@@ -49,7 +50,7 @@ const Navbar = ({ user }) => {
               <FontAwesomeIcon className="search-icon" icon={faSearch} />
               <input
                 type="text"
-                placeholder="제품검색"
+                placeholder="Search"
                 onKeyPress={onCheckEnter}
               />
             </div>
@@ -89,19 +90,21 @@ const Navbar = ({ user }) => {
               <div onClick={logout} className="nav-icon">
                 <FontAwesomeIcon icon={faUser} />
                 {!isMobile && (
-                  <span style={{ cursor: "pointer" }}>로그아웃</span>
+                  <span style={{ cursor: "pointer" }}>Sign out</span>
                 )}
               </div>
             ) : (
               <div onClick={() => navigate("/login")} className="nav-icon">
                 <FontAwesomeIcon icon={faUser} />
-                {!isMobile && <span style={{ cursor: "pointer" }}>로그인</span>}
+                {!isMobile && (
+                  <span style={{ cursor: "pointer" }}>Sign in</span>
+                )}
               </div>
             )}
             <div onClick={() => navigate("/cart")} className="nav-icon">
               <FontAwesomeIcon icon={faShoppingBag} />
               {!isMobile && (
-                <span style={{ cursor: "pointer" }}>{`쇼핑백(${
+                <span style={{ cursor: "pointer" }}>{`Cart(${
                   cartItemCount || 0
                 })`}</span>
               )}
@@ -124,7 +127,7 @@ const Navbar = ({ user }) => {
 
       <div className="nav-logo">
         <Link to="/">
-          <img width={100} src="/image/hm-logo.png" alt="hm-logo.png" />
+          <img width={100} src="/images/logo.png" alt="logo.png" />
         </Link>
       </div>
       <div className="nav-menu-area">
@@ -138,11 +141,7 @@ const Navbar = ({ user }) => {
         {!isMobile && ( // admin페이지에서 같은 search-box스타일을 쓰고있음 그래서 여기서 서치박스 안보이는것 처리를 해줌
           <div className="search-box landing-search-box ">
             <FontAwesomeIcon icon={faSearch} />
-            <input
-              type="text"
-              placeholder="Search"
-              onKeyPress={onCheckEnter}
-            />
+            <input type="text" placeholder="Search" onKeyPress={onCheckEnter} />
           </div>
         )}
       </div>
