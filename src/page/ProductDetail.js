@@ -46,9 +46,9 @@ const ProductDetail = () => {
           />
         </Col>
         <Col className="product-info-area" sm={6}>
-          <div className="product-info">리넨셔츠</div>
-          <div className="product-info">₩ 45,000</div>
-          <div className="product-info">샘플설명</div>
+          <div className="product-info">Linen-blend Pull-on Shirts</div>
+          <div className="product-info">$45</div>
+          <div className="product-info">Description</div>
 
           <Dropdown
             className="drop-down size-drop-down"
@@ -62,7 +62,7 @@ const ProductDetail = () => {
               id="dropdown-basic"
               align="start"
             >
-              {size === "" ? "사이즈 선택" : size.toUpperCase()}
+              {size === "" ? "Select Size" : size.toUpperCase()}
             </Dropdown.Toggle>
 
             <Dropdown.Menu className="size-drop-down">
@@ -70,10 +70,10 @@ const ProductDetail = () => {
             </Dropdown.Menu>
           </Dropdown>
           <div className="warning-message">
-            {sizeError && "사이즈를 선택해주세요."}
+            {sizeError && "Select Size"}
           </div>
           <Button variant="dark" className="add-button" onClick={addItemToCart}>
-            추가
+            Add
           </Button>
         </Col>
       </Row>

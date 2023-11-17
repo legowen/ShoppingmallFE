@@ -16,17 +16,17 @@ const OrderStatusCard = () => {
         </Col>
         <Col xs={8} className="order-info">
           <div>
-            <strong>주문번호: "hard_code"</strong>
+            <strong>Order Number: "hard_code"</strong>
           </div>
 
-          <div className="text-12">2023-03-31</div>
+          <div className="text-12">2023-08-31</div>
 
-          <div>리넨셔츠 외 1개</div>
-          <div>₩ 45,000</div>
+          <div>Linen-blend Pull-on Shirts and 1 other</div>
+          <div>$45</div>
         </Col>
         <Col md={2} className="vertical-middle">
-          <div className="text-align-center text-12">주문상태</div>
-          <Badge bg="warning">preparing</Badge>
+          <div className="text-align-center text-12">Order Status</div>
+          <Badge bg="warning">preparing your order</Badge>
         </Col>
       </Row>
     </div>

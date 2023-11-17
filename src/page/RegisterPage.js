@@ -88,14 +88,14 @@ const RegisterPage = () => {
         <Form.Group className="mb-3">
           <Form.Check
             type="checkbox"
-            label="이용약관에 동의합니다"
+            label="Agree"
             id="policy"
             onChange={handleChange}
             isInvalid={policyError}
           />
         </Form.Group>
         <Button variant="danger" type="submit">
-          회원가입
+          Register In
         </Button>
       </Form>
     </Container>

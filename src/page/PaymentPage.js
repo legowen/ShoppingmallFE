@@ -35,7 +35,7 @@ const PaymentPage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    //오더 생성하가ㅣ
+    //오더 생성하기
   };
 
   const handleFormChange = (event) => {
@@ -55,12 +55,12 @@ const PaymentPage = () => {
       <Row>
         <Col lg={7}>
           <div>
-            <h2 className="mb-2">배송 주소</h2>
+            <h2 className="mb-2">Billing Address</h2>
             <div>
               <Form onSubmit={handleSubmit}>
                 <Row className="mb-3">
                   <Form.Group as={Col} controlId="lastName">
-                    <Form.Label>성</Form.Label>
+                    <Form.Label>Last Name</Form.Label>
                     <Form.Control
                       type="text"
                       onChange={handleFormChange}
@@ -70,7 +70,7 @@ const PaymentPage = () => {
                   </Form.Group>
 
                   <Form.Group as={Col} controlId="firstName">
-                    <Form.Label>이름</Form.Label>
+                    <Form.Label>First Name</Form.Label>
                     <Form.Control
                       type="text"
                       onChange={handleFormChange}
@@ -81,7 +81,7 @@ const PaymentPage = () => {
                 </Row>
 
                 <Form.Group className="mb-3" controlId="formGridAddress1">
-                  <Form.Label>연락처</Form.Label>
+                  <Form.Label>Phone</Form.Label>
                   <Form.Control
                     placeholder="010-xxx-xxxxx"
                     onChange={handleFormChange}
@@ -91,7 +91,7 @@ const PaymentPage = () => {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formGridAddress2">
-                  <Form.Label>주소</Form.Label>
+                  <Form.Label>Billing Address</Form.Label>
                   <Form.Control
                     placeholder="Apartment, studio, or floor"
                     onChange={handleFormChange}
@@ -123,7 +123,7 @@ const PaymentPage = () => {
                   {/* <OrderReceipt /> */}
                 </div>
                 <div>
-                  <h2 className="payment-title">결제 정보</h2>
+                  <h2 className="payment-title">Payment Information</h2>
                 </div>
 
                 <Button
@@ -131,7 +131,7 @@ const PaymentPage = () => {
                   className="payment-button pay-button"
                   type="submit"
                 >
-                  결제하기
+                  Checkout
                 </Button>
               </Form>
             </div>
