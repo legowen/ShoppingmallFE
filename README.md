@@ -1,6 +1,6 @@
 # Shoppingmall Project
 <img width='70%' src="https://github.com/legowen/Portfolio/blob/main/img/shoppingmallfe.png?raw=true"/>
-* Demo: [https://dbmoviesinfo.netlify.app](https://shoppingmallfe.netlify.app)
+* Demo: (https://shoppingmallfe.netlify.app)
 
 ## Tech
 ![React](https://img.shields.io/badge/-React-222222?style=for-the-badge&logo=react)
