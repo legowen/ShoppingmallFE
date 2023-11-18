@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { userActions } from "../action/userAction";
 import "../style/register.style.css";
+
 const RegisterPage = () => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
@@ -20,15 +21,36 @@ const RegisterPage = () => {
 
   const register = (event) => {
     event.preventDefault();
-    // 비번 중복확인 일치하는지 확인
-    // 이용약관에 체크했는지 확인
-    // FormData에 있는 값을 가지고 백엔드로 넘겨주기
-    //성공후 로그인 페이지로 넘어가기
+    // 비번 중복확인 일치하는지 확인 2
+    const { name, email, password, confirmPassword, policy } = formData;
+    if (password !== confirmPassword) {
+      setPasswordError("Password is incorrect");
+      return;
+    }
+    // 이용약관에 체크했는지 확인 3
+    if (!policy) {
+      setPolicyError(true);
+      return;
+    }
+    // FormData에 있는 값을 가지고 백엔드로 넘겨주기 4
+    setPasswordError("");
+    setPolicyError(false);
+    dispatch(userActions.registerUser({ name, email, password }, navigate));
+    //성공후 로그인 페이지로 넘어가기 5 => navigate
   };
 
   const handleChange = (event) => {
     event.preventDefault();
-    // 값을 읽어서 FormData에 넣어주기
+    // 값을 읽어서 FormData에 넣어주기 1
+    // event.target.value
+    // event.target.id   =>
+    const { id, value, checked } = event.target;
+    console.log(id, checked);
+    if (id === "policy") {
+      setFormData({ ...formData, [id]: checked });
+    } else {
+      setFormData({ ...formData, [id]: value });
+    }
   };
 
   return (
@@ -88,7 +110,7 @@ const RegisterPage = () => {
         <Form.Group className="mb-3">
           <Form.Check
             type="checkbox"
-            label="Agree"
+            label="Agree the policy"
             id="policy"
             onChange={handleChange}
             isInvalid={policyError}
