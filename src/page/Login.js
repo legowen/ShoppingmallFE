@@ -18,6 +18,7 @@ const Login = () => {
     event.preventDefault();
     //Send email, password Data to Backend
     //이메일,패스워드를 가지고 백엔드로 보내기
+    dispatch(userActions.loginWithEmail({ email, password }));
   };
 
   const handleGoogleLogin = async (googleData) => {
