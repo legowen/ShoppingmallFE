@@ -5,7 +5,22 @@ import * as commonTypes from "../constants/commonUI.constants";
 import { type } from "@testing-library/user-event/dist/type";
 import { Navigate, useNavigate } from "react-router";
 
-const loginWithToken = () => async (dispatch) => {};
+const loginWithToken = () => async (dispatch) => {
+  try {
+    const response = await api.get("/user/me");
+    dispatch({ type: types.LOGIN_WITH_TOKEN_REQUEST });
+    if (response.status !== 200) throw new Error(response.error);
+    console.log("RRR", response);
+    dispatch({
+      type: types.LOGIN_WITH_TOKEN_SUCCESS,
+      payload: response.data,
+    });
+  } catch (error) {
+    dispatch({ type: types.LOGIN_WITH_TOKEN_FAIL, payload: error });
+
+    dispatch(logout());
+  }
+};
 const loginWithEmail =
   ({ email, password }) =>
   async (dispatch) => {
@@ -19,7 +34,11 @@ const loginWithEmail =
       dispatch({ type: types.LOGIN_FAIL, payload: error.error });
     }
   };
-const logout = () => async (dispatch) => {};
+const logout = () => async (dispatch) => {
+  sessionStorage.removeItem("token");
+
+  dispatch({ type: types.LOGOUT });
+}; // logout
 
 const loginWithGoogle = (token) => async (dispatch) => {};
 
