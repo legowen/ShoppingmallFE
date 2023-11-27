@@ -86,7 +86,7 @@ const AdminProduct = () => {
           onPageChange={handlePageClick}
           pageRangeDisplayed={5}
           pageCount={100}
-          forcePage={2} //page1 = 2, Page# + 1    /   1페이지면 2임 여긴 한개씩 +1 해야함
+          forcePage={2} //page1 = 2, Page# + 1  / If page 1 means page 2 /   1페이지면 2임 여긴 한개씩 +1 해야함
           previousLabel="< previous"
           renderOnZeroPageCount={null}
           pageClassName="page-item"

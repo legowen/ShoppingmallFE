@@ -95,7 +95,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
     }
   }, [showDialog]);
 
-  //Send Error msg  //  에러나면 토스트 메세지 보여주기
+  //Send Error toast msg  //  에러나면 토스트 메세지 보여주기
 
   return (
     <Modal show={showDialog} onHide={handleClose}>
