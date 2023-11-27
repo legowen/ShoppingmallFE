@@ -35,7 +35,7 @@ const PaymentPage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    //오더 생성하기
+    //Create Order 오더 생성하기
   };
 
   const handleFormChange = (event) => {
@@ -43,7 +43,7 @@ const PaymentPage = () => {
   };
 
   const handlePaymentInfoChange = (event) => {
-    //카드정보 넣어주기
+    //Input Card Info 카드정보 넣어주기
   };
 
   const handleInputFocus = (e) => {
