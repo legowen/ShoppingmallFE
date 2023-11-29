@@ -52,7 +52,9 @@ const AdminProduct = () => {
   const handleClickNewItem = () => {
     //Setup NewMode, open dialog
     //new 모드로 설정하고
-    // 다이얼로그 열어주기
+    setMode("new");
+    //Dialog 
+    setShowDialog(true);
   };
 
   const handlePageClick = ({ selected }) => {
@@ -106,8 +108,8 @@ const AdminProduct = () => {
 
       <NewItemDialog
         mode={mode}
+        setShowDialog={setShowDialog}
         showDialog={showDialog}
-        setShowDialog={showDialog}
       />
     </div>
   );

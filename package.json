@@ -56,5 +56,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "<img width='70%' src=\"https://github.com/legowen/Portfolio/blob/main/img/shoppingmallfe.png?raw=true\"/> * Demo: [https://dbmoviesinfo.netlify.app](https://shoppingmallfe.netlify.app)",
+  "main": "setupProxy.js",
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC"
 }
