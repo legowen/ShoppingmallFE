@@ -35,11 +35,23 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    // console.log("formdata", formData);
+    // console.log("formdata", stock);
     // Check user input item, if not Error  //  재고를 입력했는지 확인, 아니면 에러
+    if (stock.length === 0) return setStockError(true);
+
     // Convert array type to object  //  재고를 배열에서 객체로 바꿔주기
-    // [['M',2]] -> {M:2}
+    const totalStock = stock.reduce((total, item) => {
+      return { ...total, [item[0]]: parseInt(item[1]) };
+    }, {});
+    // [['M',2]] -> {M:2} (w/parseInt)
+    // console.log("formdata", totalStock);
     if (mode === "new") {
       // Add new Product  //  새 상품 만들기
+      dispatch(
+        productActions.createProduct({ ...formData, stock: totalStock })
+      );
+      setShowDialog(false);
     } else {
       // Edit Product  //  상품 수정하기
     }
@@ -79,6 +91,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
   };
 
   const onHandleCategory = (event) => {
+    //If Category is included, Delete
     if (formData.category.includes(event.target.value)) {
       const newCategory = formData.category.filter(
         (item) => item !== event.target.value
@@ -88,6 +101,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
         category: [...newCategory],
       });
     } else {
+      //Else Add New Cat
       setFormData({
         ...formData,
         category: [...formData.category, event.target.value],
@@ -97,6 +111,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
 
   const uploadImage = (url) => {
     //Image upload
+    setFormData({ ...formData, image: url });
   };
 
   useEffect(() => {
@@ -162,7 +177,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
         <Form.Group className="mb-3" controlId="stock">
           <Form.Label className="mr-1">Stock</Form.Label>
           {stockError && (
-            <span className="error-message">Add Item in stock</span>
+            <span className="error-message">Add Item in Stock</span>
           )}
           <Button size="sm" onClick={addStock}>
             Add +
