@@ -12,6 +12,7 @@ import ProductTable from "../component/ProductTable";
 
 const AdminProduct = () => {
   const navigate = useNavigate();
+  const { productList } = useSelector((state) => state.product);
   const [query, setQuery] = useSearchParams();
   const dispatch = useDispatch();
   const [showDialog, setShowDialog] = useState(false);
@@ -33,6 +34,9 @@ const AdminProduct = () => {
   ];
 
   //Bring Product List (seton url Quary)  /  상품리스트 가져오기 (url쿼리 맞춰서)
+  useEffect(() => {
+    dispatch(productActions.getProductList());
+  }, []);
 
   useEffect(() => {
     //Change url when keyword or page changed
@@ -53,7 +57,7 @@ const AdminProduct = () => {
     //Setup NewMode, open dialog
     //new 모드로 설정하고
     setMode("new");
-    //Dialog 
+    //Dialog
     setShowDialog(true);
   };
 
@@ -79,7 +83,7 @@ const AdminProduct = () => {
 
         <ProductTable
           header={tableHeader}
-          data=""
+          data={productList}
           deleteItem={deleteItem}
           openEditForm={openEditForm}
         />
