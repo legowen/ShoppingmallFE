@@ -11,8 +11,8 @@ const getProductList = (query) => async (dispatch) => {
     });
     console.log("rrr", response);
     if (response.status !== 200) throw new Error(response.error);
-    dispatch({ type: types.PRODUCT_GET_SUCCESS, payload: response.data.data });
-    console.log("response", response.data.data);
+    dispatch({ type: types.PRODUCT_GET_SUCCESS, payload: response.data });
+    // console.log("response", response.data.data);
   } catch (error) {
     dispatch({ type: types.PRODUCT_GET_FAIL, payload: error.error });
   }
