@@ -53,6 +53,7 @@ const AdminProduct = () => {
 
   const deleteItem = (id) => {
     //Delete Item
+    dispatch(productActions.deleteProduct(id));
   };
 
   const openEditForm = (product) => {
