@@ -1,43 +1,92 @@
-import React, { useEffect } from "react";
-import { useLocation } from "react-router";
-import { Col, Row } from "react-bootstrap";
-import Sidebar from "../component/Sidebar";
-import Navbar from "../component/Navbar";
-import ToastMessage from "../component/ToastMessage";
-import { useDispatch, useSelector } from "react-redux";
-import { userActions } from "../action/userAction";
+import api from "../utils/api";
+import * as types from "../constants/cart.constants";
 import { commonUiActions } from "../action/commonUiAction";
+const addToCart =
+  ({ id, size }) =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: types.ADD_TO_CART_REQUEST });
+      const response = await api.post("/cart", { size, productId: id, qty: 1 });
 
-const AppLayout = ({ children }) => {
-  const location = useLocation();
-  const dispatch = useDispatch();
-  const user = { level: "admin" }; // Delete after Add Login Function / 로그인 기능 만들고 지우기
+      if (response.status !== 200) throw new Error(response.error);
+      dispatch({
+        type: types.ADD_TO_CART_SUCCESS,
+        payload: response.data.cartItemQty,
+      });
+      dispatch(
+        commonUiActions.showToastMessage(
+          "Thank you for feeding cart!",
+          "success"
+        )
+      );
+    } catch (error) {
+      dispatch({ type: types.ADD_TO_CART_FAIL, payload: error.error });
+      dispatch(commonUiActions.showToastMessage(error.error, "error"));
+    }
+  };
 
-  // const { user } = useSelector((state) => state.user);
-  useEffect(() => {
-    dispatch(userActions.loginWithToken());
-  }, []);
+const getCartList = () => async (dispatch) => {
+  try {
+    dispatch({ type: types.GET_CART_LIST_REQUEST });
+    const response = await api.get("/cart");
+    if (response.status !== 200) throw new Error(response.error);
 
-  return (
-    <div>
-      <ToastMessage />
-      {location.pathname.includes("admin") ? (
-        <Row className="vh-100">
-          <Col xs={12} md={3} className="sidebar mobile-sidebar">
-            <Sidebar />
-          </Col>
-          <Col xs={12} md={9}>
-            {children}
-          </Col>
-        </Row>
-      ) : (
-        <>
-          <Navbar user={user} />
-          {children}
-        </>
-      )}
-    </div>
-  );
+    dispatch({
+      type: types.GET_CART_LIST_SUCCESS,
+      payload: response.data.data,
+    });
+  } catch (error) {
+    dispatch({ type: types.GET_CART_LIST_FAIL, payload: error });
+    dispatch(commonUiActions.showToastMessage(error, "error"));
+  }
+};
+const deleteCartItem = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: types.DELETE_CART_ITEM_REQUEST });
+    const response = await api.delete(`/cart/${id}`);
+    if (response.status !== 200) throw new Error(response.error);
+
+    dispatch({
+      type: types.DELETE_CART_ITEM_SUCCESS,
+      payload: response.data.cartItemQty,
+    });
+    dispatch(getCartList());
+  } catch (error) {
+    dispatch({ type: types.DELETE_CART_ITEM_FAIL, payload: error });
+    dispatch(commonUiActions.showToastMessage(error, "error"));
+  }
 };
 
-export default AppLayout;
+const updateQty = (id, value) => async (dispatch) => {
+  try {
+    dispatch({ type: types.UPDATE_CART_ITEM_REQUEST });
+    const response = await api.put(`/cart/${id}`, { qty: value });
+    if (response.status !== 200) throw new Error(response.error);
+
+    dispatch({
+      type: types.UPDATE_CART_ITEM_SUCCESS,
+      payload: response.data.data,
+    });
+  } catch (error) {
+    dispatch({ type: types.UPDATE_CART_ITEM_FAIL, payload: error });
+    dispatch(commonUiActions.showToastMessage(error, "error"));
+  }
+};
+const getCartQty = () => async (dispatch) => {
+  try {
+    dispatch({ type: types.GET_CART_QTY_REQUEST });
+    const response = await api.get("/cart/qty");
+    if (response.status !== 200) throw new Error(response.error);
+    dispatch({ type: types.GET_CART_QTY_SUCCESS, payload: response.data.qty });
+  } catch (error) {
+    dispatch({ type: types.GET_CART_QTY_FAIL, payload: error });
+    dispatch(commonUiActions.showToastMessage(error, "error"));
+  }
+};
+export const cartActions = {
+  addToCart,
+  getCartList,
+  deleteCartItem,
+  updateQty,
+  getCartQty,
+};
