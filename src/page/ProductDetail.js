@@ -12,6 +12,7 @@ import "../style/productDetail.style.css";
 const ProductDetail = () => {
   const dispatch = useDispatch();
   const selectedProduct = useSelector((state) => state.product.selectedProduct);
+  const { user } = useSelector((state) => state.user);
   const loading = useSelector((state) => state.product.loading);
   const error = useSelector((state) => state.product.error);
 
@@ -22,12 +23,20 @@ const ProductDetail = () => {
   const navigate = useNavigate();
 
   const addItemToCart = () => {
-    //사이즈를 아직 선택안했다면 에러
-    // 아직 로그인을 안한유저라면 로그인페이지로
-    // 카트에 아이템 추가하기
+    //사이즈를 아직 선택안했다면 에러 1.
+    if (size == "") {
+      setSizeError(true);
+      return;
+    }
+    // 아직 로그인을 안한유저라면 로그인페이지로 2.
+    if (!user) navigate("/login");
+    // 카트에 아이템 추가하기 3.
+    dispatch(cartActions.addToCart({ id, size }));
   };
   const selectSize = (value) => {
     // 사이즈 추가하기
+    if (sizeError) setSizeError(false);
+    setSize(value);
   };
 
   //카트에러가 있으면 에러메세지 보여주기
@@ -55,7 +64,7 @@ const ProductDetail = () => {
   return (
     <Container className="product-detail-card">
       <Row>
-      <Col sm={6}>
+        <Col sm={6}>
           <img src={selectedProduct.image} className="w-100" alt="image" />
         </Col>
         <Col className="product-info-area" sm={6}>
@@ -80,7 +89,7 @@ const ProductDetail = () => {
               {size === "" ? "Select Size" : size.toUpperCase()}
             </Dropdown.Toggle>
 
-           <Dropdown.Menu className="size-drop-down">
+            <Dropdown.Menu className="size-drop-down">
               {Object.keys(selectedProduct.stock).length > 0 &&
                 Object.keys(selectedProduct.stock).map((item) =>
                   selectedProduct.stock[item] > 0 ? (
@@ -95,9 +104,7 @@ const ProductDetail = () => {
                 )}
             </Dropdown.Menu>
           </Dropdown>
-            {/* <div className="warning-message">
-              {sizeError && "Select Size"}
-            </div> */}
+          <div className="warning-message">{sizeError && "Select Size"}</div>
           <Button variant="dark" className="add-button" onClick={addItemToCart}>
             Add
           </Button>
