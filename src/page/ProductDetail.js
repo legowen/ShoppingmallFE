@@ -71,14 +71,14 @@ const ProductDetail = () => {
             align="start"
             onSelect={(value) => selectSize(value)}
           >
-            {/* <Dropdown.Toggle
+            <Dropdown.Toggle
               className="size-drop-down"
               variant={sizeError ? "outline-danger" : "outline-dark"}
               id="dropdown-basic"
               align="start"
             >
               {size === "" ? "Select Size" : size.toUpperCase()}
-            </Dropdown.Toggle> */}
+            </Dropdown.Toggle>
 
            <Dropdown.Menu className="size-drop-down">
               {Object.keys(selectedProduct.stock).length > 0 &&
