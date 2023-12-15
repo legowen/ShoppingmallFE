@@ -5,12 +5,13 @@ import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { productActions } from "../action/productAction";
 import { commonUiActions } from "../action/commonUiAction";
-// import ReactPaginate from "react-paginate";
+import ReactPaginate from "react-paginate";
 
 const ProductAll = () => {
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.product.productList);
+  const totalPageNum = useSelector((state) => state.product);
   // const { productList, totalPageNum } = useSelector(
   //   (state) => state.product.productList
   // );
@@ -59,7 +60,7 @@ const ProductAll = () => {
         )}
       </Row>
 
-      {/* <ReactPaginate
+      <ReactPaginate
         nextLabel="next >"
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
@@ -79,7 +80,7 @@ const ProductAll = () => {
         containerClassName="pagination"
         activeClassName="active"
         className="display-center list-style-none"
-      /> */}
+      />
     </Container>
   );
 };
