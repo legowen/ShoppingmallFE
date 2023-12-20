@@ -7,6 +7,7 @@ const addToCart =
     try {
       dispatch({ type: types.ADD_TO_CART_REQUEST });
       const response = await api.post("/cart", { size, productId: id, qty: 1 });
+      console.log("rrr".response);
 
       if (response.status !== 200) throw new Error(response.error);
       dispatch({
