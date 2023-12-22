@@ -1,6 +1,7 @@
 import api from "../utils/api";
 import * as types from "../constants/cart.constants";
 import { commonUiActions } from "../action/commonUiAction";
+
 const addToCart =
   ({ id, size }) =>
   async (dispatch) => {
@@ -30,6 +31,8 @@ const getCartList = () => async (dispatch) => {
   try {
     dispatch({ type: types.GET_CART_LIST_REQUEST });
     const response = await api.get("/cart");
+    console.log("rrr", response);
+
     if (response.status !== 200) throw new Error(response.error);
 
     dispatch({

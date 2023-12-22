@@ -10,7 +10,7 @@ const loginWithToken = () => async (dispatch) => {
     const response = await api.get("/user/me");
     dispatch({ type: types.LOGIN_WITH_TOKEN_REQUEST });
     if (response.status !== 200) throw new Error(response.error);
-    console.log("RRR", response);
+    // console.log("RRR", response);
     dispatch({
       type: types.LOGIN_WITH_TOKEN_SUCCESS,
       payload: response.data,
