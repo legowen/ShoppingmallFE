@@ -10,6 +10,7 @@ const initialState = {
   error: "",
   cartItemQty: 0,
   cartList: [],
+  totalPrice: 0,
 };
 
 function cartReducer(state = initialState, action) {
@@ -21,7 +22,14 @@ function cartReducer(state = initialState, action) {
     case types.ADD_TO_CART_SUCCESS:
       return { ...state, cartItemQty: payload }; // TODOooo
     case types.GET_CART_LIST_SUCCESS:
-      return { ...state, cartList: payload };
+      return {
+        ...state,
+        cartList: payload,
+        totalPrice: payload.reduce(
+          (total, item) => (total += item.productId.price * item.qty),
+          0
+        ),
+      };
     case types.ADD_TO_CART_FAIL:
     case types.GET_CART_LIST_FAIL:
       return { ...state, loading: false, error: payload };

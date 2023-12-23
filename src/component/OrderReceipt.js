@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 import { currencyFormat } from "../utils/number";
 
-const OrderReceipt = () => {
+const OrderReceipt = ({ cartList, totalPrice }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -12,20 +12,21 @@ const OrderReceipt = () => {
     <div className="receipt-container">
       <h3 className="receipt-title">Order Status</h3>
       <ul className="receipt-list">
-        <li>
+        {cartList.map(item => <li>
           <div className="display-flex space-between">
-            <div>Item</div>
+            <div>{item.productId.name}</div>
 
-            <div>$45</div>
+            <div>$ {currencyFormat(item.productId.price * item.qty)}</div>
           </div>
-        </li>
+        </li>)}
+        
       </ul>
       <div className="display-flex space-between receipt-title">
         <div>
           <strong>Total:</strong>
         </div>
         <div>
-          <strong>Subtotal</strong>
+          <strong>$ {totalPrice}</strong>
         </div>
       </div>
       {location.pathname.includes("/cart") && (

@@ -9,7 +9,7 @@ import "../style/cart.style.css";
 
 const CartPage = () => {
   const dispatch = useDispatch();
-  const { cartList } = useSelector((state) => state.cart);
+  const { cartList, totalPrice } = useSelector((state) => state.cart);
 
   useEffect(() => {
     //Request cartList
@@ -32,7 +32,7 @@ const CartPage = () => {
           )}
         </Col>
         <Col xs={12} md={5}>
-          <OrderReceipt />
+          <OrderReceipt cartList={cartList} totalPrice={totalPrice}/>
         </Col>
       </Row>
     </Container>
