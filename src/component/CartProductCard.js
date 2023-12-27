@@ -15,6 +15,7 @@ const CartProductCard = ({ item }) => {
 
   const deleteCart = (id) => {
     //Delete Cart Item
+    dispatch(cartActions.deleteCartItem(id));
   };
 
   return (
@@ -30,7 +31,7 @@ const CartProductCard = ({ item }) => {
               <FontAwesomeIcon
                 icon={faTrash}
                 width={24}
-                onClick={() => deleteCart("hard_code")}
+                onClick={() => deleteCart(item._id)}
               />
             </button>
           </div>
