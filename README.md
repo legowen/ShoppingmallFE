@@ -7,6 +7,7 @@
 ![Redux](https://img.shields.io/badge/-Redux-purple?style=for-the-badge&logo=Redux)
 ![ReactRouter](https://img.shields.io/badge/-ReactRouter-white?style=for-the-badge&logo=ReactRouter)
 ![Bootstrap](https://img.shields.io/badge/-Bootstrap-purple?style=for-the-badge&logo=Bootstrap)
+![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7)
 
 ## Function
 * Find Product
