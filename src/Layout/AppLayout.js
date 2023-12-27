@@ -7,17 +7,25 @@ import ToastMessage from "../component/ToastMessage";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../action/userAction";
 import { commonUiActions } from "../action/commonUiAction";
+import { cartActions } from "../action/cartAction";
 
 const AppLayout = ({ children }) => {
   const location = useLocation();
   const dispatch = useDispatch();
   //   const user = null;
   //   const user = { level: "admin" }; // Delete after Add Login Function / 로그인 기능 만들고 지우기
-  const { user } = useSelector((state) => state.user);
+  const { user, error } = useSelector((state) => state.user);
   const { isFullyLoaded } = useSelector((state) => state.ui);
+
   useEffect(() => {
     dispatch(userActions.loginWithToken());
   }, []);
+
+   useEffect(() => {
+    if (user) {
+      dispatch(cartActions.getCartQty());
+    }
+  }, [user]);
 
   return (
     <div>

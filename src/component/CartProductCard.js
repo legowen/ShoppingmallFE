@@ -9,8 +9,9 @@ import { currencyFormat } from "../utils/number";
 const CartProductCard = ({ item }) => {
   const dispatch = useDispatch();
 
-  const handleQtyChange = () => {
+  const handleQtyChange = (id, value) => {
     //Edit Item quantity
+    dispatch(cartActions.updateQty(id, value));
   };
 
   const deleteCart = (id) => {
@@ -44,9 +45,11 @@ const CartProductCard = ({ item }) => {
           <div>
             Quantity:
             <Form.Select
-              onChange={(event) => handleQtyChange()}
+              onChange={(event) =>
+                handleQtyChange(item._id, event.target.value)
+              }
               required
-              defaultValue={1}
+              defaultValue={item.qty}
               className="qty-dropdown"
             >
               <option value={1}>1</option>
