@@ -31,8 +31,7 @@ const getCartList = () => async (dispatch) => {
   try {
     dispatch({ type: types.GET_CART_LIST_REQUEST });
     const response = await api.get("/cart");
-    console.log("rrr", response);
-
+    // console.log("rrr", response);
     if (response.status !== 200) throw new Error(response.error);
 
     dispatch({
@@ -76,6 +75,7 @@ const updateQty = (id, value) => async (dispatch) => {
     dispatch(commonUiActions.showToastMessage(error, "error"));
   }
 };
+
 const getCartQty = () => async (dispatch) => {
   try {
     dispatch({ type: types.GET_CART_QTY_REQUEST });
