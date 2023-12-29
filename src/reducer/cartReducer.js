@@ -8,10 +8,10 @@ import {
 const initialState = {
   loading: false,
   error: "",
-  cartItemQty: 0,
   cartList: [],
-  totalPrice: 0,
   selectedItem: {},
+  cartItemQty: 0,
+  totalPrice: 0,
 };
 
 function cartReducer(state = initialState, action) {
@@ -41,6 +41,7 @@ function cartReducer(state = initialState, action) {
     case types.GET_CART_LIST_SUCCESS:
       return {
         ...state,
+        loading:false,
         cartList: payload,
         totalPrice: payload.reduce(
           (total, item) => (total += item.productId.price * item.qty),

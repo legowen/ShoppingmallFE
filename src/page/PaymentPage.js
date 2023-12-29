@@ -12,6 +12,7 @@ import { cc_expires_format } from "../utils/number";
 
 const PaymentPage = () => {
   const dispatch = useDispatch();
+  const { cartList, totalPrice } = useSelector((state) => state.cart);
 
   const [cardValue, setCardValue] = useState({
     cvc: "",
@@ -30,26 +31,57 @@ const PaymentPage = () => {
     city: "",
     zip: "",
   });
+  // console.log("Shipinfo", shipInfo);
 
   //맨처음 페이지 로딩할때는 넘어가고  오더번호를 받으면 성공페이지로 넘어가기
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const { firstName, lastName, contact, address, city, zip } = shipInfo;
+    console.log(cartList);
     //Create Order 오더 생성하기
+    const data = {
+      totalPrice,
+      shipTo: { address, city, zip },
+      contact: { firstName, lastName, contact },
+      orderList: cartList.map((item) => {
+        return {
+          productId: item.productId._id,
+          price: item.productId.price,
+          qty: item.qty,
+          size: item.size
+        };
+      }),
+    };
+
+    dispatch(orderActions.createOrder(data));
   };
 
   const handleFormChange = (event) => {
     //shipInfo에 값 넣어주기
+    const { name, value } = event.target;
+    setShipInfo({ ...shipInfo, [name]: value });
   };
 
   const handlePaymentInfoChange = (event) => {
     //Input Card Info 카드정보 넣어주기
+    const { name, value } = event.target;
+    if (name === "expiry") {
+      let newValue = cc_expires_format(value);
+      setCardValue({ ...cardValue, [name]: newValue });
+      return;
+    }
+    setCardValue({ ...cardValue, [name]: value });
   };
 
   const handleInputFocus = (e) => {
     setCardValue({ ...cardValue, focus: e.target.name });
   };
   //카트에 아이템이 없다면 다시 카트페이지로 돌아가기 (결제할 아이템이 없으니 결제페이지로 가면 안됌)
+  if (cartList.length === 0) {
+    navigate("/cart");
+  }
+
   return (
     <Container>
       <Row>
@@ -83,7 +115,7 @@ const PaymentPage = () => {
                 <Form.Group className="mb-3" controlId="formGridAddress1">
                   <Form.Label>Phone</Form.Label>
                   <Form.Control
-                    placeholder="010-xxx-xxxxx"
+                    placeholder="xxx-xxx-xxxxx"
                     onChange={handleFormChange}
                     required
                     name="contact"
@@ -111,7 +143,7 @@ const PaymentPage = () => {
                   </Form.Group>
 
                   <Form.Group as={Col} controlId="formGridZip">
-                    <Form.Label>Zip</Form.Label>
+                    <Form.Label>Postal Code / Zip</Form.Label>
                     <Form.Control
                       onChange={handleFormChange}
                       required
@@ -120,10 +152,15 @@ const PaymentPage = () => {
                   </Form.Group>
                 </Row>
                 <div className="mobile-receipt-area">
-                  {/* <OrderReceipt /> */}
+                  <OrderReceipt cartList={cartList} totalPrice={totalPrice} />
                 </div>
                 <div>
                   <h2 className="payment-title">Payment Information</h2>
+                  <PaymentForm
+                    cardValue={cardValue}
+                    handleInputFocus={handleInputFocus}
+                    handlePaymentInfoChange={handlePaymentInfoChange}
+                  />
                 </div>
 
                 <Button
@@ -138,7 +175,7 @@ const PaymentPage = () => {
           </div>
         </Col>
         <Col lg={5} className="receipt-area">
-          {/* <OrderReceipt /> */}
+          <OrderReceipt cartList={cartList} totalPrice={totalPrice} />
         </Col>
       </Row>
     </Container>
