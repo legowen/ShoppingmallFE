@@ -4,7 +4,7 @@ import { cartActions } from "./cartAction";
 import { commonUiActions } from "./commonUiAction";
 import { type } from "@testing-library/user-event/dist/type";
 
-const createOrder = (payload) => async (dispatch) => {
+const createOrder = (payload, navigate) => async (dispatch) => {
   try {
     dispatch({ type: types.CREATE_ORDER_REQUEST });
     const response = await api.post("/order", payload);
@@ -13,7 +13,8 @@ const createOrder = (payload) => async (dispatch) => {
       type: types.CREATE_ORDER_SUCCESS,
       payload: response.data.orderNum,
     });
-    dispatch(cartActions.getCartQty())
+    dispatch(cartActions.getCartQty());
+    navigate("/payment/success");
   } catch (error) {
     dispatch({ type: types.CREATE_ORDER_FAIL, payload: error.error });
     dispatch(commonUiActions.showToastMessage(error.error, "error"));

@@ -13,6 +13,7 @@ import { cc_expires_format } from "../utils/number";
 const PaymentPage = () => {
   const dispatch = useDispatch();
   const { cartList, totalPrice } = useSelector((state) => state.cart);
+  const { orderNum, error } = useSelector((state) => state.order);
 
   const [cardValue, setCardValue] = useState({
     cvc: "",
@@ -32,13 +33,21 @@ const PaymentPage = () => {
     zip: "",
   });
   // console.log("Shipinfo", shipInfo);
-
+  useEffect(() => {
+    if (firstLoading) {
+      setFirstLoading(false);
+    } else {
+      if (orderNum !== "") {
+        navigate("/payment/success");
+      }
+    }
+  }, [orderNum]);
   //맨처음 페이지 로딩할때는 넘어가고  오더번호를 받으면 성공페이지로 넘어가기
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const { firstName, lastName, contact, address, city, zip } = shipInfo;
-    console.log(cartList);
+    // console.log(cartList);
     //Create Order 오더 생성하기
     const data = {
       totalPrice,
@@ -50,11 +59,12 @@ const PaymentPage = () => {
           price: item.productId.price,
           qty: item.qty,
           size: item.size
+          //eg. [{size:2 productId:12334, qty:@}.{}]
         };
       }),
     };
 
-    dispatch(orderActions.createOrder(data));
+    dispatch(orderActions.createOrder(data, navigate));
   };
 
   const handleFormChange = (event) => {
