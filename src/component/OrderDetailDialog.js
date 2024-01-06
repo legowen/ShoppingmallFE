@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Form, Modal, Button, Col, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-
 import "../style/adminOrder.style.css";
 import { ORDER_STATUS } from "../constants/order.constants";
 import { orderActions } from "../action/orderAction";

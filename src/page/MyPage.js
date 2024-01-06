@@ -27,7 +27,7 @@ const MyPage = () => {
       {orderList.map((item) => (
         <OrderStatusCard
           orderItem={item}
-          className="status-card-containter"
+          className="status-card-container"
           key={item._id}
         />
       ))}

@@ -10,7 +10,7 @@ const OrderStatusCard = ({ orderItem }) => {
         <Col xs={2}>
           <img
             src={orderItem.items[0]?.productId?.image}
-            alt={orderItem.items[0]?.productId.image}
+            alt={orderItem.items[0]?.productId?.image}
             height={96}
           />
         </Col>
@@ -19,10 +19,11 @@ const OrderStatusCard = ({ orderItem }) => {
             <strong>Order Number: {orderItem.orderNum}</strong>
           </div>
 
-          <div className="text-12">{orderItem.createAt.slice(0, 10)}</div>
+          <div className="text-12">{orderItem.createdAt.slice(0, 10)}</div>
 
-          <div>{orderItem.items[0].productId.name}
-            {orderItem.items.length > 1 && `and ${orderItem.items.length -1} other`}
+          <div>
+            {orderItem.items[0].productId.name}
+            {orderItem.items.length > 1 && `and ${orderItem.items.length - 1} other`}
           </div>
           <div>$ {currencyFormat(orderItem.totalPrice)}</div>
         </Col>
