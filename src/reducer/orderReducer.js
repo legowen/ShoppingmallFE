@@ -6,7 +6,7 @@ const initialState = {
   selectedOrder: {},
   error: "",
   loading: false,
-  // totalPageNum: 1,
+  totalPageNum: 1,
 };
 
 function orderReducer(state = initialState, action) {
@@ -26,7 +26,7 @@ function orderReducer(state = initialState, action) {
         ...state,
         loading: false,
         orderList: payload.data,
-        // totalPageNum: payload.totalPageNum,
+        totalPageNum: payload.totalPageNum,
       };
     case types.CREATE_ORDER_FAIL:
     case types.GET_ORDER_FAIL:

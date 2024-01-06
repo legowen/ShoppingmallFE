@@ -34,9 +34,47 @@ const getOrder = () => async (dispatch) => {
     dispatch(commonUiActions.showToastMessage(error, "error"));
   }
 };
-const getOrderList = (query) => async (dispatch) => {};
+const getOrderList = (query) => async (dispatch) => {
+  try {
+    dispatch({ type: types.GET_ORDER_LIST_REQUEST });
+    const response = await api.get("/order", {
+      params: { ...query },
+    });
 
-const updateOrder = (id, status) => async (dispatch) => {};
+    if (response.status !== 200) throw new Error(response.error);
+
+    dispatch({
+      type: types.GET_ORDER_LIST_SUCCESS,
+      payload: response.data,
+    });
+  } catch (error) {
+    dispatch({ type: types.GET_ORDER_LIST_FAIL, error: error });
+    dispatch(commonUiActions.showToastMessage(error, "error"));
+  }
+};
+
+const updateOrder = (id, status) => async (dispatch) => {
+  try {
+    dispatch({ type: types.UPDATE_ORDER_REQUEST });
+    const response = await api.put(`/order/${id}`, { status });
+
+    if (response.status !== 200) throw new Error(response.error);
+
+    dispatch({
+      type: types.UPDATE_ORDER_SUCCESS,
+      payload: response.data,
+    });
+
+    dispatch(
+      commonUiActions.showToastMessage("Order Updated!", "success")
+    );
+
+    dispatch(getOrderList());
+  } catch (error) {
+    dispatch({ type: types.UPDATE_ORDER_FAIL, error: error });
+    dispatch(commonUiActions.showToastMessage(error, "error"));
+  }
+};
 
 export const orderActions = {
   createOrder,
