@@ -46,7 +46,9 @@ const ProductAll = () => {
         {productList.length > 0 ? (
           productList.map((item) => (
             <Col md={3} sm={12} key={item._id}>
-              <ProductCard item={item} />
+              <span style={{ cursor: "pointer" }}>
+                <ProductCard item={item} />
+              </span>
             </Col>
           ))
         ) : (
