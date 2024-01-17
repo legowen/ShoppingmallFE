@@ -2,10 +2,13 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { currencyFormat } from "../utils/number";
 
-const ProductCard = ({item}) => {
+const ProductCard = ({login, item}) => {
   const navigate = useNavigate();
   const showProduct = (id) => {
-    // Move to Product Item detail page  //  상품 디테일 페이지로 가기
+    if(!login){
+      return navigate('/login')
+    }
+    // Move to Product Item detail page  //  
     navigate(`/product/${id}`);
   };
   return (

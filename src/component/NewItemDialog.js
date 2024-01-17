@@ -30,8 +30,6 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
   const [stockError, setStockError] = useState(false);
   // console.log("stock", stock);
   const handleClose = () => {
-    // Init all / 모든걸 초기화시키고;
-    // Close Dialog / 다이얼로그 닫아주기
     setShowDialog(false);
     setFormData({ ...InitialFormData });
     setStock([]);
@@ -42,23 +40,23 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
     event.preventDefault();
     // console.log("formdata", formData);
     // console.log("formdata", stock);
-    // Check user input item, if not Error  //  재고를 입력했는지 확인, 아니면 에러
+    // Check user input item, if not Error  
     if (stock.length === 0) return setStockError(true);
 
-    // Convert array type to object  //  재고를 배열에서 객체로 바꿔주기
+    // Convert array type to object  
     const totalStock = stock.reduce((total, item) => {
       return { ...total, [item[0]]: parseInt(item[1]) };
     }, {});
     // [['M',2]] -> {M:2} (w/parseInt)
     // console.log("formdata", totalStock);
     if (mode === "new") {
-      // Add new Product  //  새 상품 만들기
+      // Add new Product  
       dispatch(
         productActions.createProduct({ ...formData, stock: totalStock })
       );
       setShowDialog(false);
     } else {
-      // Edit Product  //  상품 수정하기
+      // Edit Product  
       dispatch(
         productActions.editProduct(
           { ...formData, stock: totalStock },
@@ -70,24 +68,24 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
   };
 
   const handleChange = (event) => {
-    //Input data to form  //  form에 데이터 넣어주기
+    //Input data to form 
     const { id, value } = event.target;
     setFormData({ ...formData, [id]: value });
   };
 
   const addStock = () => {
-    //Add new Array when add new product in stock  //  재고타입 추가시 배열에 새 배열 추가
+    //Add new Array when add new product in stock 
     setStock([...stock, []]);
   };
 
   const deleteStock = (idx) => {
-    //Delete Item in stock  //  재고 삭제하기
+    //Delete Item in stock  
     const newStock = stock.filter((item, index) => index !== idx);
     setStock(newStock);
   };
 
   const handleSizeChange = (value, index) => {
-    //  Change Item size  //  재고 사이즈 변환하기
+    //  Change Item size  
 
     const newStock = [...stock];
     newStock[index][0] = value;
@@ -95,7 +93,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
   };
 
   const handleStockChange = (value, index) => {
-    // Change Item stock  //  재고 수량 변환하기
+    // Change Item stock  
 
     const newStock = [...stock];
     newStock[index][1] = value;
@@ -129,7 +127,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
   useEffect(() => {
     if (showDialog) {
       if (mode === "edit") {
-        // Bring selected data value (Convert stock type : Object to Array ) //  선택된 데이터값 불러오기 (재고 형태 객체에서 어레이로 바꾸기)
+        // Bring selected data value (Convert stock type : Object to Array ) 
         setFormData(selectedProduct);
         //e.g {s:3,m:4} => [[s,3],[m,4]]
         const stockArray = Object.keys(selectedProduct.stock).map((size) => [
@@ -138,14 +136,14 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
         ]); // Array [s,m]
         setStock(stockArray);
       } else {
-        // Bring init value  //  초기화된 값 불러오기
+        // Bring init value  
         setFormData({ ...InitialFormData });
         setStock([]);
       }
     }
   }, [showDialog]);
 
-  //Send Error toast msg  //  에러나면 토스트 메세지 보여주기
+  //Send Error toast msg  
 
   return (
     <Modal show={showDialog} onHide={handleClose}>
