@@ -38,7 +38,7 @@ const logout = () => async (dispatch) => {
   sessionStorage.removeItem("token");
 
   dispatch({ type: types.LOGOUT });
-}; // logout
+}; 
 
 const loginWithGoogle = (token) => async (dispatch) => {
   try {
@@ -60,7 +60,6 @@ const registerUser =
   ({ email, name, password }, navigate) =>
   async (dispatch) => {
     try {
-      //setup constant to user.constant
       dispatch({ type: types.REGISTER_USER_REQUEST });
       const response = await api.post("/user", { email, name, password });
       if (response.status !== 200) throw new Error(response.error);
@@ -71,9 +70,9 @@ const registerUser =
           "success"
         )
       );
-      //Display toast Message
+    
       navigate("/login");
-      //Back to signin page
+      //Back to login page
     } catch (error) {
       dispatch({ type: types.REGISTER_USER_FAIL, payload: error.error });
     }

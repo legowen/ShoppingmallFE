@@ -12,9 +12,9 @@ import { cartActions } from "../action/cartAction";
 const AppLayout = ({ children }) => {
   const location = useLocation();
   const dispatch = useDispatch();
-  //   const user = null;
-  //   const user = { level: "admin" }; // Delete after Add Login Function / 로그인 기능 만들고 지우기
+
   const { user, error } = useSelector((state) => state.user);
+  
   const { isFullyLoaded } = useSelector((state) => state.ui);
 
   useEffect(() => {
