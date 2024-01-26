@@ -11,5 +11,8 @@
 
 ## Function
 * Find Product
-* Login page
+* Login logout, login with google
 * Product page
+* Order page
+* Edit product at Admin Page
+* Able to see order status at Admin Page
