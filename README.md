@@ -13,6 +13,9 @@
 * Find Product
 * Login logout, login with google
 * Product page
-* Order page
-* Edit product at Admin Page
+* Product Detail Page - choice size, add cart
+* Order page put Personal Info, Put Credit Card Info
+* Add Product on Admin Page
+* Edit product status at Admin Page
 * Able to see order status at Admin Page
+
