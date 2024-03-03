@@ -12,16 +12,18 @@ import ProductTable from "../component/ProductTable";
 
 const AdminProduct = () => {
   const navigate = useNavigate();
-  const { productList, totalPageNum } = useSelector((state) => state.product);
   const [query, setQuery] = useSearchParams();
   const dispatch = useDispatch();
+  const productList = useSelector((state) => state.product.productList);
   const [showDialog, setShowDialog] = useState(false);
   const [searchQuery, setSearchQuery] = useState({
     page: query.get("page") || 1,
     name: query.get("name") || "",
-  }); //Object for saving Searched Keyword    /  검색 조건들을 저장하는 객체
+  }); //검색 조건들을 저장하는 객체
 
+  const error = useSelector((state) => state.product.error);
   const [mode, setMode] = useState("new");
+  const totalPageNum = useSelector((state) => state.product.totalPageNum);
   const tableHeader = [
     "#",
     "Sku",
@@ -33,52 +35,39 @@ const AdminProduct = () => {
     "",
   ];
 
-  //Bring Product List (seton url Quary)  /  상품리스트 가져오기 (url쿼리 맞춰서)
   useEffect(() => {
     dispatch(productActions.getProductList({ ...searchQuery }));
   }, [query]);
 
   useEffect(() => {
-    //Change url when keyword or page changed
-    //검색어나 페이지가 바뀌면 url바꿔주기 (검색어또는 페이지가 바뀜 => url 바꿔줌=> url쿼리 읽어옴=> 이 쿼리값 맞춰서  상품리스트 가져오기)
     if (searchQuery.name === "") {
       delete searchQuery.name;
     }
-    // console.log("qqq", searchQuery);
     const params = new URLSearchParams(searchQuery);
-    const query = params.toString();
-    // console.log("qqq", query);
-    navigate("?" + query);
+    const queryString = params.toString();
+
+    navigate("?" + queryString);
   }, [searchQuery]);
 
   const deleteItem = (id) => {
-    //Delete Item
     dispatch(productActions.deleteProduct(id));
   };
 
   const openEditForm = (product) => {
-    //Setup Edit mode and open Item Setup EditDialog
-    //edit모드로 설정하고
     setMode("edit");
-    // 아이템 수정다이얼로그 열어주기
     dispatch({ type: types.SET_SELECTED_PRODUCT, payload: product });
     setShowDialog(true);
   };
 
   const handleClickNewItem = () => {
-    //Setup NewMode, open dialog
-    //new 모드로 설정하고
     setMode("new");
-    //Dialog
     setShowDialog(true);
   };
 
   const handlePageClick = ({ selected }) => {
     setSearchQuery({ ...searchQuery, page: selected + 1 });
-    //  Convert Page value to quary
-    // console.log("selected", selected);
-    //쿼리에 페이지값 바꿔주기
   };
+
 
   return (
     <div className="locate-center">

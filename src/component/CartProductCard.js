@@ -10,12 +10,10 @@ const CartProductCard = ({ item }) => {
   const dispatch = useDispatch();
 
   const handleQtyChange = (id, value) => {
-    //Edit Item quantity
     dispatch(cartActions.updateQty(id, value));
   };
 
   const deleteCart = (id) => {
-    //Delete Cart Item
     dispatch(cartActions.deleteCartItem(id));
   };
 
@@ -38,10 +36,10 @@ const CartProductCard = ({ item }) => {
           </div>
 
           <div>
-            <strong>$ {currencyFormat(item.productId.price)}</strong>
+            <strong>₩ {currencyFormat(item.productId.price)}</strong>
           </div>
-          <div>Size: {item.size.toUpperCase()}</div>
-          <div>Total: $ {currencyFormat(item.productId.price * item.qty)}</div>
+          <div>Size: {item.size}</div>
+          <div>Total: ₩ {currencyFormat(item.productId.price * item.qty)}</div>
           <div>
             Quantity:
             <Form.Select

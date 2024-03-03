@@ -73,7 +73,7 @@ const OrderDetailDialog = ({ open, handleClose }) => {
         </div>
         <Form onSubmit={submitStatus}>
           <Form.Group as={Col} controlId="status">
-            <Form.Label>Status</Form.Label>
+            <Form.Label>Total:</Form.Label>
             <Form.Select value={orderStatus} onChange={handleStatusChange}>
               {ORDER_STATUS.map((item, idx) => (
                 <option key={idx} value={item.toLowerCase()}>
