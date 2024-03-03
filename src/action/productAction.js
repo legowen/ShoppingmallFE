@@ -1,6 +1,5 @@
 import api from "../utils/api";
 import * as types from "../constants/product.constants";
-import { toast } from "react-toastify";
 import { commonUiActions } from "./commonUiAction";
 
 const getProductList = (query) => async (dispatch) => {
@@ -9,12 +8,11 @@ const getProductList = (query) => async (dispatch) => {
     const response = await api.get("/product", {
       params: { ...query },
     });
-    // console.log("rrr", response);
     if (response.status !== 200) throw new Error(response.error);
     dispatch({ type: types.PRODUCT_GET_SUCCESS, payload: response.data });
-    // console.log("response", response.data.data);
   } catch (error) {
     dispatch({ type: types.PRODUCT_GET_FAIL, payload: error.error });
+    dispatch(commonUiActions.showToastMessage(error.error, "error"));
   }
 };
 const getProductDetail = (id) => async (dispatch) => {
@@ -39,10 +37,10 @@ const createProduct = (formData) => async (dispatch) => {
     if (response.status !== 200) throw new Error(response.error);
     dispatch({
       type: types.PRODUCT_CREATE_SUCCESS,
+      payload: response.data.data,
     });
-    dispatch(
-      commonUiActions.showToastMessage("Success to Add Product", "success")
-    );
+    dispatch(commonUiActions.showToastMessage("Added Product!", "success"));
+    dispatch(getProductList({ page: 1 }));
   } catch (error) {
     dispatch({ type: types.PRODUCT_CREATE_FAIL, payload: error.error });
     dispatch(commonUiActions.showToastMessage(error.error, "error"));
@@ -56,7 +54,7 @@ const deleteProduct = (id) => async (dispatch) => {
     dispatch({
       type: types.PRODUCT_DELETE_SUCCESS,
     });
-    dispatch(commonUiActions.showToastMessage("Deleted Product", "success"));
+    dispatch(commonUiActions.showToastMessage("Deleted Product!", "success"));
 
     dispatch(getProductList({ page: 1 }));
   } catch (error) {
@@ -70,8 +68,13 @@ const editProduct = (formData, id) => async (dispatch) => {
     dispatch({ type: types.PRODUCT_EDIT_REQUEST });
     const response = await api.put(`/product/${id}`, formData);
     if (response.status !== 200) throw new Error(response.error);
-    dispatch({ type: types.PRODUCT_EDIT_SUCCESS, payload: response.data.data });
-    dispatch(commonUiActions.showToastMessage("Product Edited", "success"));
+
+    dispatch({
+      type: types.PRODUCT_EDIT_SUCCESS,
+      payload: response.data.data,
+    });
+    dispatch(commonUiActions.showToastMessage("Edited Product!", "success"));
+
     dispatch(getProductList({ page: 1, name: "" }));
   } catch (error) {
     dispatch({ type: types.PRODUCT_EDIT_FAIL, payload: error.error });

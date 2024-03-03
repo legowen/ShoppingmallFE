@@ -6,7 +6,6 @@ import Navbar from "../component/Navbar";
 import ToastMessage from "../component/ToastMessage";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../action/userAction";
-import { commonUiActions } from "../action/commonUiAction";
 import { cartActions } from "../action/cartAction";
 
 const AppLayout = ({ children }) => {
@@ -14,19 +13,14 @@ const AppLayout = ({ children }) => {
   const dispatch = useDispatch();
 
   const { user, error } = useSelector((state) => state.user);
-  
-  const { isFullyLoaded } = useSelector((state) => state.ui);
-
   useEffect(() => {
     dispatch(userActions.loginWithToken());
   }, []);
-
-   useEffect(() => {
+  useEffect(() => {
     if (user) {
       dispatch(cartActions.getCartQty());
     }
   }, [user]);
-
   return (
     <div>
       <ToastMessage />

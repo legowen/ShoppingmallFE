@@ -33,7 +33,7 @@ function orderReducer(state = initialState, action) {
     case types.GET_ORDER_LIST_FAIL:
       return { ...state, loading: false, error: payload };
     case types.SET_SELECTED_ORDER:
-      return {...state, selectedOrder: payload}
+      return { ...state, selectedOrder: payload };
     default:
       return state;
   }

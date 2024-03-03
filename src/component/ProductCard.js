@@ -2,20 +2,16 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { currencyFormat } from "../utils/number";
 
-const ProductCard = ({login, item}) => {
+const ProductCard = ({ item }) => {
   const navigate = useNavigate();
   const showProduct = (id) => {
-    if(!login){
-      return navigate('/login')
-    }
-    // Move to Product Item detail page  //  
     navigate(`/product/${id}`);
   };
   return (
     <div className="card" onClick={() => showProduct(item._id)}>
       <img src={item?.image} alt={item?.image} />
       <div>{item?.name}</div>
-      <div>${currencyFormat(item?.price)}</div>
+      <div>₩ {currencyFormat(item?.price)}</div>
     </div>
   );
 };

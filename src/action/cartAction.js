@@ -8,7 +8,6 @@ const addToCart =
     try {
       dispatch({ type: types.ADD_TO_CART_REQUEST });
       const response = await api.post("/cart", { size, productId: id, qty: 1 });
-      // console.log("rrr".response);
 
       if (response.status !== 200) throw new Error(response.error);
       dispatch({
@@ -17,7 +16,7 @@ const addToCart =
       });
       dispatch(
         commonUiActions.showToastMessage(
-          "Thank you for feeding cart!",
+          "Thank you for Feeding Cart!",
           "success"
         )
       );
@@ -31,7 +30,6 @@ const getCartList = () => async (dispatch) => {
   try {
     dispatch({ type: types.GET_CART_LIST_REQUEST });
     const response = await api.get("/cart");
-    // console.log("rrr", response);
     if (response.status !== 200) throw new Error(response.error);
 
     dispatch({
@@ -75,7 +73,6 @@ const updateQty = (id, value) => async (dispatch) => {
     dispatch(commonUiActions.showToastMessage(error, "error"));
   }
 };
-
 const getCartQty = () => async (dispatch) => {
   try {
     dispatch({ type: types.GET_CART_QTY_REQUEST });
