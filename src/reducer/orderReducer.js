@@ -1,41 +1,53 @@
 import * as types from "../constants/order.constants";
-
+import {createSlice} from '@reduxjs/toolkit'
 const initialState = {
-  orderList: [],
-  orderNum: "",
-  selectedOrder: {},
-  error: "",
-  loading: false,
-  totalPageNum: 1,
+orderList:[],
+orderNum:"",
+selectedOrder:{},
+error:"",
+loading:false,
+totalPageNum:1,
+
 };
 
-function orderReducer(state = initialState, action) {
-  const { type, payload } = action;
+const orderSlice = createSlice({
+  name:"order",
+  initialState,
+  reducers:{
+    createOrderRequest(state,action){
+      state.loading=true;
+    },
+    getOrderRequest(state,action){
+      state.loading=true;
+    },
+    getOrderListRequest(state,action){
+      state.loading=true;
+    },
+    createOrderSuccess(state,action){
+      state.loading=false;
+      state.orderNum=action.payload;
+    },
+    getOrderSuccess(state,action){
+      state.loading=false;
+      state.orderList=action.payload;
+      state.totalPageNum=action.payload;
+    },
+    getOrderListSuccess(state,action){
+      state.loading=false;
+      state.orderList=action.payload.data;
+      state.totalPageNum=action.payload.totalPageNum;
+    },
+    AllFail(state,action){
+      state.loading=false;
+      state.error=action.payload;
+    },
+    setSelectedOrder(state,action){
+   
+      state.selectedOrder=action.payload
+      state.totalPageNum=action.payload.totalPageNum;
+    }
 
-  switch (type) {
-    case types.CREATE_ORDER_REQUEST:
-    case types.GET_ORDER_REQUEST:
-    case types.GET_ORDER_LIST_REQUEST:
-      return { ...state, loading: true };
-
-    case types.CREATE_ORDER_SUCCESS:
-      return { ...state, loading: false, orderNum: payload };
-    case types.GET_ORDER_SUCCESS:
-    case types.GET_ORDER_LIST_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        orderList: payload.data,
-        totalPageNum: payload.totalPageNum,
-      };
-    case types.CREATE_ORDER_FAIL:
-    case types.GET_ORDER_FAIL:
-    case types.GET_ORDER_LIST_FAIL:
-      return { ...state, loading: false, error: payload };
-    case types.SET_SELECTED_ORDER:
-      return { ...state, selectedOrder: payload };
-    default:
-      return state;
   }
-}
-export default orderReducer;
+})
+export const orderActionss=orderSlice.actions
+export default orderSlice.reducer;

@@ -2,76 +2,68 @@ import api from "../utils/api";
 import * as types from "../constants/order.constants";
 import { cartActions } from "./cartAction";
 import { commonUiActions } from "./commonUiAction";
+import { orderActionss } from "../reducer/orderReducer";
 
-const createOrder = (payload) => async (dispatch) => {
+const createOrder = (payload, navigate) => async (dispatch) => {
   try {
-    dispatch({ type: types.CREATE_ORDER_REQUEST });
+    dispatch(orderActionss.createOrderRequest());
     const response = await api.post("/order", payload);
     if (response.status !== 200) throw new Error(response.error);
-
-    dispatch({
-      type: types.CREATE_ORDER_SUCCESS,
-      payload: response.data.orderNum,
-    });
+    dispatch(orderActionss.createOrderSuccess(response.data));
     dispatch(cartActions.getCartQty());
+    navigate("/payment/success");
   } catch (error) {
-    dispatch({ type: types.CREATE_ORDER_FAIL, payload: error.error });
+    dispatch(orderActionss.AllFail(error.error));
     dispatch(commonUiActions.showToastMessage(error.error, "error"));
   }
 };
 
 const getOrder = () => async (dispatch) => {
   try {
-    dispatch({ type: types.GET_ORDER_REQUEST });
-    const response = await api.get("/order/me");
-
-    if (response.status !== 200) throw new Error(response.error);
-
-    dispatch({ type: types.GET_ORDER_SUCCESS, payload: response.data });
+    dispatch(orderActionss.getOrderRequest());
+    const res = await api.get("/order");
+    if (res.status !== 200) throw new Error(res.error);
+    dispatch(orderActionss.getOrderSuccess(res.data.data));
   } catch (error) {
-    dispatch({ type: types.GET_ORDER_FAIL, error: error });
-    dispatch(commonUiActions.showToastMessage(error, "error"));
+    dispatch(orderActionss.AllFail(error.error));
+    dispatch(commonUiActions.showToastMessage(error.error, "error"));
   }
 };
 const getOrderList = (query) => async (dispatch) => {
   try {
-    dispatch({ type: types.GET_ORDER_LIST_REQUEST });
-    const response = await api.get("/order", {
-      params: { ...query },
-    });
+    dispatch(orderActionss.getOrderListRequest());
 
-    if (response.status !== 200) throw new Error(response.error);
+    const res = await api.get("/order/all", { params: { ...query } });
 
-    dispatch({
-      type: types.GET_ORDER_LIST_SUCCESS,
-      payload: response.data,
-    });
+    if (res.status !== 200) throw new Error(res.error);
+    dispatch(orderActionss.getOrderListSuccess(res.data));
   } catch (error) {
-    dispatch({ type: types.GET_ORDER_LIST_FAIL, error: error });
-    dispatch(commonUiActions.showToastMessage(error, "error"));
+    dispatch(orderActionss.AllFail(error.error));
+    dispatch(commonUiActions.showToastMessage(error.error, "error"));
+  }
+};
+
+const selectedOrder = (item) => (dispatch) => {
+  try {
+    dispatch(orderActionss.setSelectedOrder(item));
+  } catch (error) {
+    dispatch(orderActionss.AllFail(error.error));
+    dispatch(commonUiActions.showToastMessage(error.error, "error"));
   }
 };
 
 const updateOrder = (id, status) => async (dispatch) => {
   try {
-    dispatch({ type: types.UPDATE_ORDER_REQUEST });
-    const response = await api.put(`/order/${id}`, { status });
+    dispatch(orderActionss.createOrderRequest());
+    const res = await api.put(`/order/${id}`, { status });
+    if (res.status !== 200) throw new Error(res.error);
 
-    if (response.status !== 200) throw new Error(response.error);
+    dispatch(orderActionss.setSelectedOrder(res.data));
+    dispatch(commonUiActions.showToastMessage("오더가 수정되었습니다.", "success"));
 
-    dispatch({
-      type: types.UPDATE_ORDER_SUCCESS,
-      payload: response.data,
-    });
-
-    dispatch(
-      commonUiActions.showToastMessage("Updated Order!", "success")
-    );
-
-    dispatch(getOrderList());
   } catch (error) {
-    dispatch({ type: types.UPDATE_ORDER_FAIL, error: error });
-    dispatch(commonUiActions.showToastMessage(error, "error"));
+    dispatch(orderActionss.AllFail(error.error));
+    dispatch(commonUiActions.showToastMessage(error.error, "error"));
   }
 };
 
@@ -80,4 +72,5 @@ export const orderActions = {
   getOrder,
   getOrderList,
   updateOrder,
+  selectedOrder,
 };
