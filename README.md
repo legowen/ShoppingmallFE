@@ -1,6 +1,8 @@
-# Shoppingmall Project
+# OnHanger Project (Under development)
+- Project under development in deploying AWS
+
 <img width='70%' src="https://github.com/legowen/Portfolio/blob/main/img/shoppingmallfe.png?raw=true"/>
-* Demo: (https://shoppingmallfe.netlify.app)
+* Demo: (https://onhanger.netlify.app) (First Web Version of onHanger)
 
 ## Tech
 ![React](https://img.shields.io/badge/-React-222222?style=for-the-badge&logo=react)
