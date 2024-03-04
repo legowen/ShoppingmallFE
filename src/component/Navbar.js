@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../action/userAction";
+import logo from "../img/logo.png"
 
 const Navbar = ({ user }) => {
   const dispatch = useDispatch();
@@ -127,7 +128,7 @@ const Navbar = ({ user }) => {
 
       <div className="nav-logo">
         <Link to="/">
-          <img width={100} src="/images/logo.png" alt="logo.png" />
+          <img width={100} src={logo} alt="logo" />
         </Link>
       </div>
       <div className="nav-menu-area">
