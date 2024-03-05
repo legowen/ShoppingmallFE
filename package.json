@@ -1,6 +1,6 @@
 {
   "homepage": "https://legowen.github.io/onhangerfe/",
-  "name": "on_hanger",
+  "name": "on_hanger_fe",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
